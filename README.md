@@ -84,20 +84,20 @@ Command: `python scripts/run_eval.py --out runs/eval` on 2026-11-16.
 | Metric | Value |
 | --- | --- |
 | Questions | 12 |
-| Avg claim grounding rate | 0.64 |
-| Avg citation precision | 0.88 |
-| Avg key-fact coverage | 0.57 |
-| Avg correctness (1-5) | 3.58 |
-| Total unsupported claims | 2 |
-| Avg evidence items per question | 28.3 |
-| Avg latency | 59 s |
-| Avg cost | \$0.014 |
-| Total tokens | 508,591 |
+| Avg claim grounding rate | 0.55 |
+| Avg citation precision | 0.82 |
+| Avg key-fact coverage | 0.60 |
+| Avg correctness (1-5) | 3.92 |
+| Total unsupported claims | 5 |
+| Avg evidence items per question | 29.8 |
+| Avg latency | 69 s |
+| Avg cost | \$0.015 |
+| Total tokens | 524,590 |
 
-Reading: the citation layer is the strong part (precision 0.88), the verifier
-is deliberately strict (grounding 0.64 - several trial-level numbers were
-only in the abstract, so claims about them were correctly flagged as
-unsupported), and almost all questions ended within one minute and one cent.
+Reading: the citation layer is the strong part (precision 0.82), the verifier
+is deliberately strict (grounding 0.55 - trial-level numbers that only appear
+in the abstract are flagged as unsupported instead of being waved through),
+and every question finished in under two minutes at about one cent each.
 
 ### Figure QA (vision tool)
 
@@ -107,8 +107,8 @@ Command: `python scripts/run_figure_eval.py --enforce-vision` against a local
 | Category | Questions | Vision correct | Caption-only correct |
 | --- | --- | --- | --- |
 | Chart value reading (18-month endpoint values) | 4 | 0/4 | 0/4 |
-| Labels and group counts | 4 | 4/4 | 0/4 |
-| Total | 8 | 4/8 | 0/8 |
+| Labels and group counts | 3 | 3/3 | 0/3 |
+| Total | 7 | 3/7 | 0/7 |
 
 **Finding (kept explicit on purpose):** the 2B local model reads axes, labels
 and group counts reliably, but mis-maps values to group legends on
@@ -116,8 +116,9 @@ multi-series charts - for one weight chart it answered 84 kg where the
 article text reports 75.2 kg. The harness reports the two categories
 separately instead of hiding the failure behind a single accuracy number; the
 drop-in fix is a larger checkpoint (Qwen2.5-VL-7B or a hosted VLM) behind the
-same OpenAI-compatible endpoint. The control (caption only) is 0/8, so the
-visual channel carries information the caption does not.
+same OpenAI-compatible endpoint. The control (caption only, using the real figure caption
+from the article) is 0/7, so the visual channel carries information the
+caption does not.
 
 ## Local vision model (optional)
 

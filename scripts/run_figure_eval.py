@@ -58,7 +58,7 @@ async def main(limit: int | None, enforce_vision: bool) -> None:
         result = await tool.run({"image_url": row["image_url"], "question": row["question"]})
         answer = result.evidence[0].text if result.evidence else result.observation
         vision_ok = judge_answer(row, answer)
-        caption_ok = judge_answer(row, str(row.get("figure", "")))
+        caption_ok = judge_answer(row, str(row.get("caption", "")))
         results.append(
             {
                 "id": row["id"],

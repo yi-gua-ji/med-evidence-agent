@@ -9,7 +9,6 @@
 | l1 | True | False |
 | l2 | True | False |
 | l3 | True | False |
-| l4 | True | False |
 
-Vision accuracy: 0.5
+Vision accuracy: 0.4286
 Caption-only accuracy: 0.0
