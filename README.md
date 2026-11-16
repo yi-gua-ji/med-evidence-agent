@@ -1,5 +1,9 @@
 # Med Evidence Agent
 
+[![tests](https://github.com/yi-gua-ji/med-evidence-agent/actions/workflows/tests.yml/badge.svg)](https://github.com/yi-gua-ji/med-evidence-agent/actions/workflows/tests.yml)
+[![license](https://img.shields.io/github/license/yi-gua-ji/med-evidence-agent)](https://github.com/yi-gua-ji/med-evidence-agent/blob/main/LICENSE)
+[![python](https://img.shields.io/badge/python-3.11%2B-blue)](https://github.com/yi-gua-ji/med-evidence-agent)
+
 An evidence-grounded medical research agent: it plans sub-questions, searches
 PubMed, reads full texts and figures, writes a cited answer, and then verifies
 every claim against the evidence it used. Built to be evaluated, not just demoed.
@@ -152,6 +156,9 @@ pytest -q    # offline: no network, no API keys required
 - The verifier is an LLM judge: it catches unsupported claims, not all errors.
 - Local Qwen2-VL-2B is a demo-grade vision model; larger checkpoints read
   small figure labels better.
+- The `data/corpus` directory holds open-access PubMed Central full texts
+  downloaded with `scripts/build_corpus.py`; each article stays under its
+  original PMC open-access license.
 
 ## License
 
