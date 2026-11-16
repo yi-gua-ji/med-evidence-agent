@@ -1,0 +1,37 @@
+# Default configuration for the Med Evidence Agent. Secrets are read from
+# environment variables (see .env.example) and are never stored in this file.
+llm:
+  base_url: "https://api.deepseek.com"
+  api_key_env: DEEPSEEK_API_KEY
+  model: deepseek-chat
+  temperature: 0.0
+  max_tokens: 2500
+  timeout: 120
+  # USD per 1M tokens, used only for the cost report.
+  price_input_per_m: 0.27
+  price_output_per_m: 1.10
+
+vision:
+  enabled: false
+  base_url: "http://127.0.0.1:8080/v1"
+  api_key_env: VISION_API_KEY
+  model: qwen2.5-vl-3b
+  timeout: 120
+  max_image_bytes: 8000000
+
+pubmed:
+  tool: med-evidence-agent
+  email: "med-evidence-agent@example.com"
+  api_key_env: NCBI_API_KEY
+  rate_limit_per_sec: 2.5
+  default_retmax: 8
+
+agent:
+  max_sub_questions: 5
+  max_steps_per_subq: 4
+  max_evidence_chars: 4500
+  max_claims: 12
+
+kb:
+  corpus_dir: "data/corpus"
+  top_k: 6
