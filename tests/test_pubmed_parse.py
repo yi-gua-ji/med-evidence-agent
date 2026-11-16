@@ -23,7 +23,7 @@ def test_parse_pmc_article(sample_pmc_xml):
     assert len(article["figures"]) == 1
     figure = article["figures"][0]
     assert figure["label"] == "Figure 1"
-    assert figure["image_url"].startswith("https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7570000/bin/")
+    assert figure["image_url"].startswith("https://pmc.ncbi.nlm.nih.gov/articles/PMC7570000/bin/")
     assert figure["image_url"].endswith("fig1.jpg")
 
 
