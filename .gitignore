@@ -10,3 +10,5 @@ data/index/
 data/raw/
 runs/
 *.log
+src/*.egg-info/
+.pytest_cache/
