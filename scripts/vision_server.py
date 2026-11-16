@@ -1,4 +1,4 @@
-"""OpenAI-compatible local vision server backed by Qwen2-VL."""
+"""OpenAI-compatible local vision server backed by Qwen2-VL.
 
 Runs the same chat-completions contract the VisionTool expects, so the agent
 can use a local GPU instead of a paid API. Start with:

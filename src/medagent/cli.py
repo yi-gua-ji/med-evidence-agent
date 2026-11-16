@@ -88,6 +88,11 @@ async def _doctor() -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    import sys as _sys
+    try:
+        _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:  # noqa: BLE001 - non-standard streams
+        pass
     load_env_file()
     parser = argparse.ArgumentParser(prog="medagent", description="Med Evidence Agent")
     parser.add_argument("--version", action="version", version=__version__)

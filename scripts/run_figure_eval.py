@@ -37,6 +37,11 @@ def judge_answer(row: dict, answer: str) -> bool:
 
 
 async def main(limit: int | None, enforce_vision: bool) -> None:
+    import sys as _sys
+    try:
+        _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:  # noqa: BLE001
+        pass
     load_env_file()
     cfg = load_config()
     if enforce_vision:

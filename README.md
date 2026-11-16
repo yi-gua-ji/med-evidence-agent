@@ -97,20 +97,23 @@ unsupported), and almost all questions ended within one minute and one cent.
 
 ### Figure QA (vision tool)
 
-See `runs/figure_eval/report.md` after starting `scripts/vision_server.py`.
-The control condition is "caption only" (the figure caption without the
-image), which cannot reveal chart values.
+Command: `python scripts/run_figure_eval.py --enforce-vision` against a local
+`Qwen2-VL-2B-Instruct` server (`scripts/vision_server.py`).
 
-| Question | Vision correct | Caption-only correct |
-| --- | --- | --- |
-| f1 weight at 18 months (~75.2 kg) | 1 | 0 |
-| f2 SBP at 18 months (~120 mmHg) | 1 | 0 |
-| f3 DBP at 18 months (~78 mmHg) | 1 | 0 |
-| f4 lowest HF-hospitalisation curve | 1 | 0 |
+| Category | Questions | Vision correct | Caption-only correct |
+| --- | --- | --- | --- |
+| Chart value reading (18-month endpoint values) | 4 | 0/4 | 0/4 |
+| Labels and group counts | 4 | 4/4 | 0/4 |
+| Total | 8 | 4/8 | 0/8 |
 
-Vision tool: 4/4 chart questions answered with values matching the article
-text; caption-only control 0/4, i.e. the visual channel carries information
-the text channel does not.
+**Finding (kept explicit on purpose):** the 2B local model reads axes, labels
+and group counts reliably, but mis-maps values to group legends on
+multi-series charts - for one weight chart it answered 84 kg where the
+article text reports 75.2 kg. The harness reports the two categories
+separately instead of hiding the failure behind a single accuracy number; the
+drop-in fix is a larger checkpoint (Qwen2.5-VL-7B or a hosted VLM) behind the
+same OpenAI-compatible endpoint. The control (caption only) is 0/8, so the
+visual channel carries information the caption does not.
 
 ## Local vision model (optional)
 

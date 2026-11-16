@@ -15,6 +15,11 @@ from medagent.eval.run import evaluate, load_questions  # noqa: E402
 
 
 async def main(args: argparse.Namespace) -> None:
+    import sys as _sys
+    try:
+        _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:  # noqa: BLE001
+        pass
     load_env_file()
     cfg = load_config()
     questions = load_questions(args.questions)
